@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    var items = [];
+    var nums = [];
+
+    function add() {
+      var data = document.getElementById('data').value;
+      var data1 = document.getElementById('num').value;
+
+      if (items.length == 0) {
+        items.push(data);
+        nums.push(data1);
+        view();
+      }
+      else {
+        for (var a = 0; a < items.length; a++) {
+          var x = items[a];
+          var y = nums[a];
+          var c = 0;
+          while (c == 0) {
+            if (x == data) {
+              alert("Contact Name Already Exists \n" + items[a] + " - " + nums[a]);
+              c = 1
+              break;
+            }
+            else if (y == data1) {
+              alert("Contact  Number Already Exists \n" + items[a] + " - " + nums[a]);
+              c = 1
+              break;
+            }
+            else if (c == 0) {
+              items.push(data);
+              nums.push(data1);
+              view();
+              break;
+            }
+          }
+          if (c == 1) {
+            break;
+          }
+        }
+      }
+    }
+
+    function view() {
+      var result = "<ol>";
+      for (var i = 0; i < items.length; i++) {
+        result += "<li>" + items[i] + "-" + nums[i] + "</li>";
+      }
+      result += "</ol>";
+      document.getElementById('r').innerHTML = result;
+    }
+
+    function first() {
+      items.shift();
+      nums.shift();
+      view();
+    }
+
+    function last() {
+      items.pop();
+      nums.pop();
+      view();
+    }
+  </script>
+  <style>
+    #b1 {
+      background-color: white;
+      color: black;
+      border: 2px solid blue;
+      margin: auto;
+    }
+
+    #b1:hover {
+      background-color: blue;
+      color: white;
+    }
+
+    #b2 {
+      background-color: white;
+      color: black;
+      border: 2px solid blue;
+      margin: auto;
+    }
+
+    #b2:hover {
+      background-color: blue;
+      color: white;
+    }
+
+    #b3 {
+      background-color: white;
+      color: black;
+      border: 2px solid blue;
+      margin: auto;
+    }
+
+    #b3:hover {
+      background-color: blue;
+      color: white;
+    }
+  </style>
+  <title>Document</title>
+</head>
+
+<body>
+  <div style="color:blue; text-align: center; font-size: 40px;"><b>Telephone Directory</b></div>
+  <br>
+  Name : <input type="text" id="data">
+  Mobile Number : <input type="tel" id="num">
+  <br><br><br><br>
+  <button id="b1" onclick="add()">Add Contact</button>
+  <button id="b2" onclick="first()">Remove First</button>
+  <button id="b3" onclick="last()">Remove Last</button>
+  <hr>
+  <br>
+  <div id="r" style="color:blue; font-size:25px; text-align:justify;"></div>
+  <hr>
+</body>
+</html>
